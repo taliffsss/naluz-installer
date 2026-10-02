@@ -77,8 +77,7 @@ final class NewCommandTest extends TestCase
         $this->assertContains('--prefer-dist', $create);
         $this->assertContains('--no-interaction', $create, 'non-interactive when there is no terminal');
         $this->assertNotContains('--no-install', $create);
-        $repo = json_decode(substr((string) array_values(array_filter($create, fn ($a) => str_starts_with($a, '--repository=')))[0], 13), true);
-        $this->assertSame(['type' => 'vcs', 'url' => 'https://github.com/taliffsss/naluzphp-framework'], $repo);
+        $this->assertSame([], array_values(array_filter($create, fn ($a) => str_starts_with($a, '--repository'))), 'the skeleton comes from Packagist, no repository settings');
 
         $this->assertSame(['php', 'naluz', 'key:generate', '--jwt'], $this->runner->calls[1][0]);
         $this->assertSame($this->root . '/blog', $this->runner->calls[1][1], 'runs inside the new project');

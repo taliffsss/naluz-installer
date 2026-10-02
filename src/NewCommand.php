@@ -8,7 +8,6 @@ namespace Naluz\Installer;
 final class NewCommand
 {
     public const PACKAGE = 'naluz/naluzphp';
-    public const REPOSITORY = 'https://github.com/taliffsss/naluzphp-framework';
     public const DEV_VERSION = 'dev-master';
 
     /** @var list<string>|null */
@@ -83,7 +82,6 @@ final class NewCommand
         $command = [
             ...$this->composer, 'create-project', self::PACKAGE, $target,
             ...($release !== null ? [$release] : []),
-            '--repository=' . json_encode(['type' => 'vcs', 'url' => self::REPOSITORY], JSON_UNESCAPED_SLASHES),
             '--prefer-dist',
             ...($this->interactive ? [] : ['--no-interaction']),
             // the skeleton's post-create script needs vendor/, so it is skipped when nothing is installed

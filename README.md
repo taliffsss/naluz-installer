@@ -88,7 +88,7 @@ naluz                 php naluz list
 - Programs are started with an argument list, never through a shell, so nothing in a name is interpreted by `sh`.
 - The installer only forwards commands when the current directory really looks like a NaluzPHP project, and never executes
   unrelated files.
-- The skeleton is fetched by Composer from `https://github.com/taliffsss/naluzphp-framework`, with TLS verification and
+- The skeleton (`naluz/naluzphp`) is installed by Composer from Packagist over HTTPS, with TLS verification and
   Composer's usual integrity checks.
 
 ## Troubleshooting
