@@ -1,0 +1,24 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+use Naluz\Installer\Application;
+
+if (PHP_SAPI !== 'cli') {
+    exit("The naluz installer must be run from the command line.\n");
+}
+
+// Works both as a global/local Composer package and from a checkout.
+foreach ([__DIR__ . '/../../../autoload.php', __DIR__ . '/../vendor/autoload.php'] as $autoload) {
+    if (is_file($autoload)) {
+        require $autoload;
+        break;
+    }
+}
+if (!class_exists(Application::class)) {
+    fwrite(STDERR, "Composer autoload not found. Run `composer install`.\n");
+    exit(1);
+}
+
+exit((new Application())->run($argv));

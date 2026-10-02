@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<ruleset name="NaluzInstaller">
+    <description>PSR-12 for the installer.</description>
+    <file>src</file>
+    <file>tests</file>
+    <file>bin</file>
+    <arg name="extensions" value="php"/>
+    <arg name="colors"/>
+    <arg value="p"/>
+    <rule ref="PSR12"/>
+    <rule ref="PSR1.Classes.ClassDeclaration.MultipleClasses">
+        <exclude-pattern>tests/*</exclude-pattern>
+    </rule>
+    <exclude-pattern>vendor/*</exclude-pattern>
+</ruleset>
