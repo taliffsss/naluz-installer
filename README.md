@@ -109,7 +109,7 @@ vendor/bin/phpcs
 php bin/naluz list
 ```
 
-Releases: tag `vX.Y.Z` on `main`. See [CHANGELOG.md](CHANGELOG.md).
+Releases: put the version in `.github/release-tag` and merge to `main`; the Release workflow creates the tag and GitHub Release from `releases/<tag>.md`. Do not create tags by hand. See [CHANGELOG.md](CHANGELOG.md).
 
 ## License
 
