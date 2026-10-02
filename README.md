@@ -15,8 +15,8 @@ Requires PHP 8.2+ and [Composer](https://getcomposer.org/). The installer itself
 composer global require naluz/installer
 ```
 
-Make sure Composer's global `bin` directory is on your `PATH`. Find it with `composer global config bin-dir --absolute`
-(commonly `~/.composer/vendor/bin` or `~/.config/composer/vendor/bin`; on Windows `%APPDATA%\Composer\vendor\bin`).
+Composer puts the `naluz` command in its global `bin` folder, which must be on your `PATH`. Find the folder with
+`composer global config bin-dir --absolute`.
 
 Check it works:
 
@@ -24,13 +24,25 @@ Check it works:
 naluz --version
 ```
 
-> **Note**
-Until the package is registered on [Packagist](https://packagist.org/), install it from GitHub:
+### `naluz: command not found`
+
+The global `bin` folder is not on your `PATH`. Add the folder printed by `composer global config bin-dir --absolute`:
 
 ```bash
-composer global config repositories.naluz-installer vcs https://github.com/taliffsss/naluz-installer
-composer global require naluz/installer:dev-main
+# macOS (zsh)           typical folder: ~/.composer/vendor/bin or ~/.config/composer/vendor/bin
+echo 'export PATH="$PATH:$HOME/.composer/vendor/bin"' >> ~/.zshrc && source ~/.zshrc
+
+# Linux (bash)          typical folder: ~/.config/composer/vendor/bin or ~/.composer/vendor/bin
+echo 'export PATH="$PATH:$HOME/.config/composer/vendor/bin"' >> ~/.bashrc && source ~/.bashrc
 ```
+
+```powershell
+# Windows (PowerShell)  typical folder: %APPDATA%\Composer\vendor\bin
+[Environment]::SetEnvironmentVariable("Path", $env:Path + ";$env:APPDATA\Composer\vendor\bin", "User")
+```
+
+Then open a **new** terminal and run `naluz --version`. More detail (fish, Git Bash, the Windows settings UI, troubleshooting):
+https://taliffsss.github.io/naluz-framework-docs/prologue/installation/#naluz-command-not-found
 
 Update it with `composer global update naluz/installer`, and remove it with `composer global remove naluz/installer`.
 
